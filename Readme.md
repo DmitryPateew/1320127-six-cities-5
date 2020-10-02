@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов» [![Build status][travis-image]][travis-url]
 
 * Студент: [Дмитрий Патеев](https://up.htmlacademy.ru/react/5/user/1320127).
-* Наставник: `Неизвестно`.
+* Наставник: [Максим Чеченёв](https://htmlacademy.ru/profile/id1507573).
 
 ---
 
