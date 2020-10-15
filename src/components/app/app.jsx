@@ -8,21 +8,21 @@ import FavoritePage from "../favoritePage/favoritePage";
 
 const App = (props) => {
   const {quantityOffer} = props;
-
+  const {offers} = props;
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <MainPage quantityOffer={quantityOffer}/>
+          <MainPage quantityOffer={quantityOffer} offers={offers}/>
         </Route>
         <Route exact path="/login">
           <LoginPage/>
         </Route>
         <Route exact path="/favorites">
-          <FavoritePage/>
+          <FavoritePage offers={offers}/>
         </Route>
         <Route exact path="/offer/:id">
-          <OfferPage/>
+          <OfferPage offers={offers}/>
         </Route>
       </Switch>
     </BrowserRouter>
@@ -31,7 +31,7 @@ const App = (props) => {
 
 App.propTypes = {
   quantityOffer: PropTypes.number.isRequired,
+  offers: PropTypes.array.isRequired,
 };
-
 export default App;
 
