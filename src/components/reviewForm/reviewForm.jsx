@@ -15,8 +15,10 @@ class ReviewForm extends PureComponent {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    this.setState({date: new Date().getDate()});
-    this.setState({name: `Egor`});
+    this.setState({
+      date: new Date().getDate(),
+      name: `Egor`
+    });
   }
 
   handleFieldChange(evt) {

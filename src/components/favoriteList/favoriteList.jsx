@@ -19,7 +19,7 @@ class FavoriteList extends PureComponent {
   render() {
     return (
       <div className="favorites__places">
-        {this.state.offers.map((offer, i) => (<FavoriteItem key={`${i}`} offer={offer}/>))}
+        {this.state.offers.map((offer, i) => (<FavoriteItem key={i} offer={offer}/>))}
       </div>
     );
   }
