@@ -1,6 +1,7 @@
 export default [
   {
     id: 1,
+    coords: [52.3909553943508, 4.85309666406198],
     favorite: true,
     photos: [`img/apartment-02.jpg`, `img/apartment-01.jpg`],
     title: `Beautiful & luxurious studio at great location`,
@@ -44,6 +45,7 @@ An independent House, strategically located between Rembrand Square and National
   },
   {
     id: 2,
+    coords: [52.369553943508, 4.85309666406198],
     favorite: false,
     photos: [`img/apartment-01.jpg`],
     title: `Beautiful & luxurious studio at great location`,
@@ -87,6 +89,7 @@ An independent House, strategically located between Rembrand Square and National
   },
   {
     id: 3,
+    coords: [52.3909553943508, 4.929309666406198],
     favorite: true,
     photos: [`img/apartment-02.jpg`, `img/apartment-01.jpg`],
     title: `Beautiful & luxurious studio at great location`,
@@ -130,6 +133,7 @@ An independent House, strategically located between Rembrand Square and National
   },
   {
     id: 4,
+    coords: [52.3809553943508, 4.939309666406198],
     favorite: false,
     photos: [`img/apartment-02.jpg`, `img/apartment-01.jpg`],
     title: `Beautiful & luxurious studio at great location`,
