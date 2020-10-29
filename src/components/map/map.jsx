@@ -2,6 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import {filterByActiveCity} from "../../mainLogic";
 
 class Map extends PureComponent {
   constructor(props) {
@@ -11,7 +12,7 @@ class Map extends PureComponent {
   }
 
   componentDidMount() {
-    const {offers} = this.props;
+    const {offers, activeCity} = this.props;
     const city = [52.38333, 4.9];
 
     const icon = leaflet.icon({
@@ -34,7 +35,7 @@ class Map extends PureComponent {
       })
       .addTo(map);
 
-    offers.map((offer) => {
+    filterByActiveCity(offers, activeCity).map((offer) => {
       leaflet
         .marker(offer.coords, {icon})
         .addTo(map);
@@ -50,7 +51,8 @@ class Map extends PureComponent {
 }
 
 Map.propTypes = {
-  offers: PropTypes.array.isRequired
+  offers: PropTypes.array.isRequired,
+  activeCity: PropTypes.string.isRequired,
 };
 
 export default Map;
