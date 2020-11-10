@@ -7,6 +7,7 @@ import Header from "../header/header";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../store/action";
 import SortList from "../sortList/sortList";
+import {filterByActiveCity} from "../../mainLogic";
 
 class MainPage extends PureComponent {
   constructor(props) {
@@ -14,8 +15,7 @@ class MainPage extends PureComponent {
   }
 
   render() {
-    const {quantityOffer, offers, activeCity, changeCity, activeFilter, changeFilter} = this.props;
-
+    const {offers, activeCity, changeCity, activeFilter, changeFilter, changeOverId, mouseOverId} = this.props;
     return (
       <div className="page page--gray page--main">
         <Header/>
@@ -26,7 +26,7 @@ class MainPage extends PureComponent {
             <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
-                <b className="places__found"> {quantityOffer} places to stay in Amsterdam</b>
+                <b className="places__found"> {filterByActiveCity(offers, activeCity).length} places to stay in {activeCity}</b>
                 <form className="places__sorting" action="#" method="get">
                   <span className="places__sorting-caption">Sort by</span>
                   <span className="places__sorting-type" tabIndex="0">
@@ -36,11 +36,11 @@ class MainPage extends PureComponent {
                   </span>
                   <SortList changeFilter={changeFilter} activeFilter={activeFilter}/>
                 </form>
-                <OfferList offers={offers} activeFilter={activeFilter} activeCity={activeCity}/>
+                <OfferList changeOverId={changeOverId} activeFilter={activeFilter} activeCity={activeCity}/>
               </section>
               <div className="cities__right-section">
                 <section className="cities__map map">
-                  <Map offers={offers} activeCity={activeCity}/>
+                  <Map offers={offers} activeCity={activeCity} mouseOverId={mouseOverId}/>
                 </section>
               </div>
             </div>
@@ -52,7 +52,8 @@ class MainPage extends PureComponent {
 }
 
 MainPage.propTypes = {
-  quantityOffer: PropTypes.number.isRequired,
+  mouseOverId: PropTypes.number,
+  changeOverId: PropTypes.func.isRequired,
   offers: PropTypes.array.isRequired,
   activeCity: PropTypes.string.isRequired,
   changeCity: PropTypes.func.isRequired,
@@ -63,15 +64,20 @@ MainPage.propTypes = {
 const mapStateToProps = (state) => ({
   activeCity: state.activeCity,
   activeFilter: state.activeFilter,
+  offers: state.offers,
+  mouseOverId: state.mouseOverId,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   changeCity: (city) => {
     dispatch(ActionCreator.changeCity(city));
   },
-  changeFilter: (activeFilter)=>{
+  changeFilter: (activeFilter) => {
     dispatch(ActionCreator.changeFilter(activeFilter));
-  }
+  },
+  changeOverId: (overId) => {
+    dispatch(ActionCreator.changeOverId(overId));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

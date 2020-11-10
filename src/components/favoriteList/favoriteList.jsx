@@ -2,6 +2,7 @@ import React, {PureComponent} from "react";
 import FavoriteItem from "../favoriteItem/favoriteItem";
 import PropTypes from "prop-types";
 import {TYPE_OF_HOUSING} from "../../constant";
+import {connect} from "react-redux";
 
 
 class FavoriteList extends PureComponent {
@@ -24,6 +25,10 @@ class FavoriteList extends PureComponent {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  offers: state.offers,
+});
 
 FavoriteList.propTypes = {
   offers: PropTypes.arrayOf(
@@ -49,4 +54,4 @@ FavoriteList.propTypes = {
       ))
 };
 
-export default FavoriteList;
+export default connect(mapStateToProps)(FavoriteList);
