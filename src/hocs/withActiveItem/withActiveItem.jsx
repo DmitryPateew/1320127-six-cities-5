@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {withRouter} from 'react-router-dom';
-import {TYPE_OF_HOUSING} from "../../constant";
+import {offerProp} from "../../propTypes";
 
 const withActiveItem = (Component) => {
   class WithActiveItem extends PureComponent {
@@ -44,14 +44,7 @@ const withActiveItem = (Component) => {
   WithActiveItem.propTypes = {
     history: PropTypes.any,
     changeOverId: PropTypes.func,
-    offer: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      photos: PropTypes.array.isRequired,
-      pricePerNight: PropTypes.number.isRequired,
-      rating: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      typeOfHousing: PropTypes.oneOf([TYPE_OF_HOUSING.APARTMENT, TYPE_OF_HOUSING.HOTEL, TYPE_OF_HOUSING.HOUSE, TYPE_OF_HOUSING.ROOM]).isRequired,
-    })
+    offer: offerProp
   };
 
   return withRouter(WithActiveItem);

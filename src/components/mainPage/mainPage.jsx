@@ -69,13 +69,13 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  changeCity: (city) => {
+  changeCity(city) {
     dispatch(ActionCreator.changeCity(city));
   },
-  changeFilter: (activeFilter) => {
+  changeFilter(activeFilter) {
     dispatch(ActionCreator.changeFilter(activeFilter));
   },
-  changeOverId: (overId) => {
+  changeOverId(overId) {
     dispatch(ActionCreator.changeOverId(overId));
   },
 });

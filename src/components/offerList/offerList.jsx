@@ -17,8 +17,8 @@ class OfferList extends PureComponent {
 
     return (
       <div className="cities__places-list places__list tabs__content">
-        {sortByActiveFilter(filterByActiveCity(offers, activeCity), activeFilter).map((offer, i) => (
-          <OfferWrapper key={i} changeOverId={changeOverId} offer={offer}/>))}
+        {sortByActiveFilter(filterByActiveCity(offers, activeCity), activeFilter).map((offer) => (
+          <OfferWrapper key={offer.id} changeOverId={changeOverId} offer={offer}/>))}
       </div>
     );
   }
