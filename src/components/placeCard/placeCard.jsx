@@ -1,28 +1,17 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {TYPE_OF_HOUSING} from "../../constant";
-import {withRouter} from 'react-router-dom';
+import {offerProp} from "../../propTypes";
 
 
 class PlaceCard extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      active: false
-    };
-    this.handleOfferClick = this.handleOfferClick.bind(this);
-  }
-
-  handleOfferClick(evt) {
-    evt.preventDefault();
-    this.setState = ({active: true});
-    this.props.history.push(`/offer/${this.props.offer.id}`);
   }
 
   render() {
-    const {offer} = this.props;
+    const {offer, handleOfferOnMouse, handleOfferOutMouse, handleOfferClick} = this.props;
     return (
-      <article onClick={this.handleOfferClick} className="cities__place-card place-card">
+      <article onMouseOver={handleOfferOnMouse} onMouseOut={handleOfferOutMouse} onClick={handleOfferClick} className="cities__place-card place-card">
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
@@ -59,16 +48,12 @@ class PlaceCard extends PureComponent {
   }
 }
 
+
 PlaceCard.propTypes = {
-  history: PropTypes.any,
-  offer: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    photos: PropTypes.array.isRequired,
-    pricePerNight: PropTypes.number.isRequired,
-    rating: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    typeOfHousing: PropTypes.oneOf([TYPE_OF_HOUSING.APARTMENT, TYPE_OF_HOUSING.HOTEL, TYPE_OF_HOUSING.HOUSE, TYPE_OF_HOUSING.ROOM]).isRequired,
-  })
+  handleOfferOnMouse: PropTypes.func.isRequired,
+  handleOfferOutMouse: PropTypes.func.isRequired,
+  handleOfferClick: PropTypes.func.isRequired,
+  offer: offerProp,
 };
 
-export default withRouter(PlaceCard);
+export default PlaceCard;

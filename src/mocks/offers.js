@@ -1,7 +1,7 @@
 export default [
   {
     id: 1,
-    city: `Amsterdam`,
+    city: `Hamburg`,
     coords: [52.3909553943508, 4.85309666406198],
     favorite: true,
     photos: [`img/apartment-02.jpg`, `img/apartment-01.jpg`],
@@ -92,7 +92,7 @@ An independent House, strategically located between Rembrand Square and National
   {
     id: 3,
     city: `Amsterdam`,
-    coords: [52.3909553943508, 4.929309666406198],
+    coords: [52.3909553943508, 4.929309666408198],
     favorite: true,
     photos: [`img/apartment-02.jpg`, `img/apartment-01.jpg`],
     title: `Beautiful & luxurious studio at great location`,
@@ -182,7 +182,7 @@ An independent House, strategically located between Rembrand Square and National
   {
     id: 5,
     city: `Amsterdam`,
-    coords: [52.3809553943508, 4.939309666406198],
+    coords: [52.3809553943508, 4.950307666706178],
     favorite: false,
     photos: [`img/apartment-02.jpg`, `img/apartment-01.jpg`],
     title: `Beautiful & luxurious studio at great location`,

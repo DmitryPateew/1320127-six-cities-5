@@ -8,39 +8,61 @@ class Map extends PureComponent {
   constructor(props) {
     super(props);
     this.mapRef = React.createRef();
-
+    this.map = null;
+    this.markers = [];
   }
 
-  componentDidMount() {
-    const {offers, activeCity} = this.props;
-    const city = [52.38333, 4.9];
-
-    const icon = leaflet.icon({
+  _installMap() {
+    const {offers, activeCity, mouseOverId} = this.props;
+    let icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]
     });
 
+    filterByActiveCity(offers, activeCity).map((offer) => {
+      if (mouseOverId === offer.id) {
+        icon = leaflet.icon({
+          iconUrl: `img/pin-active.svg`,
+          iconSize: [30, 30]
+        });
+
+      } else {
+        icon = leaflet.icon({
+          iconUrl: `img/pin.svg`,
+          iconSize: [30, 30]
+        });
+
+      }
+      this.markers.push(
+          leaflet
+          .marker(offer.coords, {icon}).addTo(this.map));
+    });
+  }
+
+  componentDidMount() {
+    const city = [52.38333, 4.9];
     const zoom = 12;
-    const map = leaflet.map(this.mapRef.current, {
+    this.map = leaflet.map(this.mapRef.current, {
       center: city,
       zoom,
       zoomControl: false,
       marker: true,
     });
-    map.setView(city, zoom);
-
+    this.map.setView(city, zoom);
+    this._installMap();
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       })
-      .addTo(map);
-
-    filterByActiveCity(offers, activeCity).map((offer) => {
-      leaflet
-        .marker(offer.coords, {icon})
-        .addTo(map);
-    });
+      .addTo(this.map);
+    this._installMap();
   }
+
+  componentDidUpdate() {
+    this.markers.map((marker) => this.map.removeLayer(marker));
+    this._installMap();
+  }
+
 
   render() {
     return (
@@ -51,6 +73,7 @@ class Map extends PureComponent {
 }
 
 Map.propTypes = {
+  mouseOverId: PropTypes.number,
   offers: PropTypes.array.isRequired,
   activeCity: PropTypes.string.isRequired,
 };

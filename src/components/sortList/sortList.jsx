@@ -9,7 +9,7 @@ const SortList = (props) => {
   return (
     <ul className="places__options places__options--custom places__options--opened">
       {FILTER.map((filterItem, i) => (
-        <SortItem key={i} changeFilter={changeFilter} filter={filterItem} activeFilter={activeFilter}/>))}
+        <SortItem key={filterItem[i]} changeFilter={changeFilter} filter={filterItem} activeFilter={activeFilter}/>))}
     </ul>
   );
 };

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {TYPE_OF_HOUSING} from "../../constant";
 import ReviewForm from "../reviewForm/reviewForm";
 import {withRouter} from 'react-router-dom';
+import {connect} from "react-redux";
 
 class OfferPage extends PureComponent {
   constructor(props) {
@@ -248,6 +249,10 @@ class OfferPage extends PureComponent {
   }
 }
 
+const mapStateToProps = (state) => ({
+  offers: state.offers,
+});
+
 OfferPage.propTypes = {
   location: PropTypes.any.isRequired,
   offers: PropTypes.arrayOf(
@@ -272,4 +277,4 @@ OfferPage.propTypes = {
       ))
 };
 
-export default withRouter(OfferPage);
+export default connect(mapStateToProps)(withRouter(OfferPage));

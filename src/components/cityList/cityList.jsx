@@ -11,7 +11,7 @@ const CityList = (props) => {
       <section className="locations container">
         <ul className="locations__list tabs__list">
           {CITY_LIST.map((cityItem, i) => (
-            <CityItem key={i} city={cityItem} activeCity={activeCity} changeCity={changeCity}/>))}
+            <CityItem key={cityItem[i] + i} city={cityItem} activeCity={activeCity} changeCity={changeCity}/>))}
         </ul>
       </section>
     </div>
