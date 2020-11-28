@@ -1,21 +1,24 @@
 import React from "react";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {Switch, Route, Router as BrowserRouter} from "react-router-dom";
 import MainPage from "../mainPage/mainPage";
 import LoginPage from "../loginPage/loginPage";
 import OfferPage from "../offerPge/offerPage";
 import FavoritePage from "../favoritePage/favoritePage";
+import PrivateRoute from "../privateRoute/privateRoute";
+import browserHistory from "../../browserHistory";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter history={browserHistory}>
       <Switch>
-        <Route exact path="/" component={MainPage} />
+        <Route exact path="/" component={MainPage}/>
         <Route exact path="/login">
           <LoginPage/>
         </Route>
-        <Route exact path="/favorites">
-          <FavoritePage/>
-        </Route>
+        <PrivateRoute exact path="/favorites" render={() => {
+          return (<FavoritePage/>);
+        }}>
+        </PrivateRoute>
         <Route exact path="/offer/:id">
           <OfferPage/>
         </Route>

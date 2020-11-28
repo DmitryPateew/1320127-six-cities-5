@@ -1,15 +1,13 @@
-import {ActionType} from "./action";
-import {extend} from "../utils";
-import offers from "../mocks/offers";
+import {ActionType} from "../../action";
+import {extend} from "../../../utils";
 
 const initialState = {
   activeCity: `Amsterdam`,
   activeFilter: `Popular`,
-  offers,
   mouseOverId: null,
 };
 
-const reducer = (state = initialState, action) => {
+const filterActive = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.CHANGE__CITY:
       return extend(state, {
@@ -29,4 +27,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {reducer};
+export {filterActive};

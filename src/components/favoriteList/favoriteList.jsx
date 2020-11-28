@@ -2,33 +2,22 @@ import React, {PureComponent} from "react";
 import FavoriteItem from "../favoriteItem/favoriteItem";
 import PropTypes from "prop-types";
 import {TYPE_OF_HOUSING} from "../../constant";
-import {connect} from "react-redux";
 
 
 class FavoriteList extends PureComponent {
   constructor(props) {
     super(props);
-    const offersFavorite = this.props.offers.filter(function (offer) {
-      return offer.favorite === true;
-    });
-
-    this.state = {
-      offers: offersFavorite
-    };
   }
 
   render() {
     return (
       <div className="favorites__places">
-        {this.state.offers.map((offer, i) => (<FavoriteItem key={i} offer={offer}/>))}
+        {this.props.offers.map((offer, i) => (<FavoriteItem key={i} offer={offer}/>))}
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  offers: state.offers,
-});
 
 FavoriteList.propTypes = {
   offers: PropTypes.arrayOf(
@@ -43,15 +32,9 @@ FavoriteList.propTypes = {
         maxAdults: PropTypes.number.isRequired,
         pricePerNight: PropTypes.number.isRequired,
         facilities: PropTypes.array.isRequired,
-        ownerInformation: PropTypes.shape({
-          photo: PropTypes.string.isRequired,
-          name: PropTypes.string.isRequired,
-          super: PropTypes.bool.isRequired,
-        }),
         description: PropTypes.string.isRequired,
-        reviews: PropTypes.array,
       }
       ))
 };
 
-export default connect(mapStateToProps)(FavoriteList);
+export default FavoriteList;
