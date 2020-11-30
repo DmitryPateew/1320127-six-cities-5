@@ -14,18 +14,18 @@ class OfferList extends PureComponent {
 
   render() {
     const {offers, activeCity, activeFilter, changeOverId} = this.props;
-
+    const nearCard = true;
     return (
       <div className="cities__places-list places__list tabs__content">
         {sortByActiveFilter(filterByActiveCity(offers, activeCity), activeFilter).map((offer) => (
-          <OfferWrapper key={offer.id} changeOverId={changeOverId} offer={offer}/>))}
+          <OfferWrapper key={offer.id} changeOverId={changeOverId} offer={offer} nearCard={nearCard}/>))}
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  offers: state.offers,
+const mapStateToProps = ({DATA}) => ({
+  offers: DATA.offers,
 });
 
 OfferList.propTypes = {
@@ -34,5 +34,5 @@ OfferList.propTypes = {
   activeCity: PropTypes.string.isRequired,
   activeFilter: PropTypes.string.isRequired,
 };
-
+export {OfferList};
 export default connect(mapStateToProps)(OfferList);

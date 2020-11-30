@@ -8,6 +8,7 @@ import {connect} from "react-redux";
 import {ActionCreator} from "../../store/action";
 import SortList from "../sortList/sortList";
 import {filterByActiveCity} from "../../mainLogic";
+import MainEmpty from "../mainEmpty/mainEmpty";
 
 class MainPage extends PureComponent {
   constructor(props) {
@@ -15,7 +16,8 @@ class MainPage extends PureComponent {
   }
 
   render() {
-    const {offers, activeCity, changeCity, activeFilter, changeFilter, changeOverId, mouseOverId} = this.props;
+    const {offers, activeCity, changeCity, activeFilter, changeFilter, changeOverId} = this.props;
+    const isEmpty = !offers.length;
     return (
       <div className="page page--gray page--main">
         <Header/>
@@ -23,27 +25,31 @@ class MainPage extends PureComponent {
           <h1 className="visually-hidden">Cities</h1>
           <CityList activeCity={activeCity} changeCity={changeCity}/>
           <div className="cities">
-            <div className="cities__places-container container">
-              <section className="cities__places places">
-                <h2 className="visually-hidden">Places</h2>
-                <b className="places__found"> {filterByActiveCity(offers, activeCity).length} places to stay in {activeCity}</b>
-                <form className="places__sorting" action="#" method="get">
-                  <span className="places__sorting-caption">Sort by</span>
-                  <span className="places__sorting-type" tabIndex="0">
+            {isEmpty ? <MainEmpty currentCity={activeCity}/> : <React.Fragment>
+              <div className="cities__places-container container">
+                <section className="cities__places places">
+
+                  <h2 className="visually-hidden">Places</h2>
+                  <b className="places__found"> {filterByActiveCity(offers, activeCity).length} places to stay
+                    in {activeCity}</b>
+                  <form className="places__sorting" action="#" method="get">
+                    <span className="places__sorting-caption">Sort by</span>
+                    <span className="places__sorting-type" tabIndex="0">
                   Popular
-                    <svg className="places__sorting-arrow" width="7" height="4">
-                    </svg>
-                  </span>
-                  <SortList changeFilter={changeFilter} activeFilter={activeFilter}/>
-                </form>
-                <OfferList changeOverId={changeOverId} activeFilter={activeFilter} activeCity={activeCity}/>
-              </section>
-              <div className="cities__right-section">
-                <section className="cities__map map">
-                  <Map offers={offers} activeCity={activeCity} mouseOverId={mouseOverId}/>
+                      <svg className="places__sorting-arrow" width="7" height="4">
+                      </svg>
+                    </span>
+                    <SortList changeFilter={changeFilter} activeFilter={activeFilter}/>
+                  </form>
+                  <OfferList changeOverId={changeOverId} activeFilter={activeFilter} activeCity={activeCity}/>
                 </section>
+                <div className="cities__right-section">
+                  <section className="cities__map map">
+                    <Map/>
+                  </section>
+                </div>
               </div>
-            </div>
+            </React.Fragment>}
           </div>
         </main>
       </div>
@@ -59,14 +65,16 @@ MainPage.propTypes = {
   changeCity: PropTypes.func.isRequired,
   changeFilter: PropTypes.func.isRequired,
   activeFilter: PropTypes.string.isRequired,
+  authorizationStatus: PropTypes.string,
 };
 
-const mapStateToProps = (state) => ({
-  activeCity: state.activeCity,
-  activeFilter: state.activeFilter,
-  offers: state.offers,
-  mouseOverId: state.mouseOverId,
+const mapStateToProps = ({DATA, ACTIVE}) => ({
+  activeCity: ACTIVE.activeCity,
+  activeFilter: ACTIVE.activeFilter,
+  offers: DATA.offers,
+  mouseOverId: ACTIVE.mouseOverId,
 });
+
 
 const mapDispatchToProps = (dispatch) => ({
   changeCity(city) {
@@ -80,4 +88,5 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
+export {MainPage};
 export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

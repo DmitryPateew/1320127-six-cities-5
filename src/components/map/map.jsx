@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import {filterByActiveCity} from "../../mainLogic";
+import {connect} from "react-redux";
+import {TYPE__OF__COMPONENT} from "../../constant";
+import {adaptToClient} from "../../adapter";
 
 class Map extends PureComponent {
   constructor(props) {
@@ -10,16 +13,38 @@ class Map extends PureComponent {
     this.mapRef = React.createRef();
     this.map = null;
     this.markers = [];
+    this.city = [52.38333, 4.9];
+    this.zoom = 12;
+    this.offers = [];
+  }
+
+  _changeTypeOfStore(type) {
+    if (type === TYPE__OF__COMPONENT.OFFER) {
+      this.offers = this.props.nearby.map(adaptToClient);
+    } else {
+      this.offers = this.props.offers;
+    }
   }
 
   _installMap() {
-    const {offers, activeCity, mouseOverId} = this.props;
+    const {activeCity, mouseOverId, type, coords} = this.props;
+    this._changeTypeOfStore(type);
     let icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]
     });
 
-    filterByActiveCity(offers, activeCity).map((offer) => {
+    if (coords) {
+      icon = leaflet.icon({
+        iconUrl: `img/pin-active.svg`,
+        iconSize: [30, 30]
+      });
+      this.markers.push(leaflet
+        .marker(coords, {icon}).addTo(this.map));
+    }
+
+    filterByActiveCity(this.offers, activeCity).map((offer) => {
+
       if (mouseOverId === offer.id) {
         icon = leaflet.icon({
           iconUrl: `img/pin-active.svg`,
@@ -33,22 +58,22 @@ class Map extends PureComponent {
         });
 
       }
-      this.markers.push(
-          leaflet
-          .marker(offer.coords, {icon}).addTo(this.map));
+      this.markers.push(leaflet
+        .marker(offer.coords, {icon}).addTo(this.map));
     });
   }
 
+
   componentDidMount() {
-    const city = [52.38333, 4.9];
-    const zoom = 12;
+    this.city = [filterByActiveCity(this.props.offers, this.props.activeCity)[0].cityLocation.latitude, filterByActiveCity(this.props.offers, this.props.activeCity)[0].cityLocation.longitude];
+    const zoom = this.zoom;
     this.map = leaflet.map(this.mapRef.current, {
-      center: city,
+      center: this.city,
       zoom,
       zoomControl: false,
       marker: true,
     });
-    this.map.setView(city, zoom);
+    this.map.setView(this.city, zoom);
     this._installMap();
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -59,6 +84,9 @@ class Map extends PureComponent {
   }
 
   componentDidUpdate() {
+    this.zoom = filterByActiveCity(this.props.offers, this.props.activeCity)[0].cityLocation.zoom;
+    this.city = [filterByActiveCity(this.props.offers, this.props.activeCity)[0].cityLocation.latitude, filterByActiveCity(this.props.offers, this.props.activeCity)[0].cityLocation.longitude];
+    this.map.setView(this.city, this.zoom);
     this.markers.map((marker) => this.map.removeLayer(marker));
     this._installMap();
   }
@@ -72,10 +100,20 @@ class Map extends PureComponent {
 
 }
 
+const mapStateToProps = ({ACTIVE, DATA, NEARBY}) => ({
+  activeCity: ACTIVE.activeCity,
+  mouseOverId: ACTIVE.mouseOverId,
+  nearby: NEARBY.nearby,
+  offers: DATA.offers,
+});
+
 Map.propTypes = {
   mouseOverId: PropTypes.number,
   offers: PropTypes.array.isRequired,
   activeCity: PropTypes.string.isRequired,
+  nearby: PropTypes.array.isRequired,
+  coords: PropTypes.array,
+  type: PropTypes.string,
 };
 
-export default Map;
+export default connect(mapStateToProps)(Map);
