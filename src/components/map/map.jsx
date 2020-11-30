@@ -5,7 +5,6 @@ import 'leaflet/dist/leaflet.css';
 import {filterByActiveCity} from "../../mainLogic";
 import {connect} from "react-redux";
 import {TYPE__OF__COMPONENT} from "../../constant";
-import {adaptToClient} from "../../adapter";
 
 class Map extends PureComponent {
   constructor(props) {
@@ -20,7 +19,7 @@ class Map extends PureComponent {
 
   _changeTypeOfStore(type) {
     if (type === TYPE__OF__COMPONENT.OFFER) {
-      this.offers = this.props.nearby.map(adaptToClient);
+      this.offers = this.props.nearby;
     } else {
       this.offers = this.props.offers;
     }

@@ -11,6 +11,7 @@ export const ActionType = {
   LOAD__FAVORITES: `LOAD__FAVORITES`,
   CHANGE__FAVORITE: `CHANGE__FAVORITE`,
   REVIEW__ADD: `REVIEW__ADD`,
+  CHANGE__TOGGLE__FILTER: `CHANGE__TOGGLE__FILTER`,
 };
 
 export const ActionCreator = {
@@ -31,7 +32,10 @@ export const ActionCreator = {
     payload: status,
     payload2: login,
   }),
-
+  changeToggleFilter: (toggle) => ({
+    type: ActionType.CHANGE__TOGGLE__FILTER,
+    payload: toggle,
+  }),
 };
 
 export const loadCitys = (citys) => ({

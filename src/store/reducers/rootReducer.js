@@ -3,7 +3,7 @@ import {offerData} from "../reducers/offerData/offerData";
 import {filterActive} from "../reducers/filterActive/filterActive";
 import {user} from "../reducers/user/user";
 import {commentData} from "./commentsData/commentData";
-import {nearbyData} from "./nearby/nearby";
+import {nearbyData} from "./nearby/nearbyData";
 import {favoriteData} from "../reducers/favoriteData/favoriteData";
 import {reviewData} from "./review/reviewData";
 

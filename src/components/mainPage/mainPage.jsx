@@ -13,11 +13,20 @@ import MainEmpty from "../mainEmpty/mainEmpty";
 class MainPage extends PureComponent {
   constructor(props) {
     super(props);
+    this.handleChangeFilterList = this.handleChangeFilterList.bind(this);
+  }
+
+  handleChangeFilterList(evt) {
+    evt.preventDefault();
+    const {toggle} = this.props;
+    // eslint-disable-next-line no-unused-expressions
+    toggle ? this.props.changeToggleFilter(false) : this.props.changeToggleFilter(true);
   }
 
   render() {
     const {offers, activeCity, changeCity, activeFilter, changeFilter, changeOverId} = this.props;
     const isEmpty = !offers.length;
+
     return (
       <div className="page page--gray page--main">
         <Header/>
@@ -32,14 +41,13 @@ class MainPage extends PureComponent {
                   <h2 className="visually-hidden">Places</h2>
                   <b className="places__found"> {filterByActiveCity(offers, activeCity).length} places to stay
                     in {activeCity}</b>
-                  <form className="places__sorting" action="#" method="get">
+                  <form onClick={this.handleChangeFilterList} className="places__sorting" action="#" method="get">
                     <span className="places__sorting-caption">Sort by</span>
-                    <span className="places__sorting-type" tabIndex="0">
-                  Popular
+                    <span className="places__sorting-type" tabIndex="0">{activeFilter}
                       <svg className="places__sorting-arrow" width="7" height="4">
                       </svg>
                     </span>
-                    <SortList changeFilter={changeFilter} activeFilter={activeFilter}/>
+                    <SortList changeFilter={changeFilter} toggle={this.props.toggle} activeFilter={activeFilter}/>
                   </form>
                   <OfferList changeOverId={changeOverId} activeFilter={activeFilter} activeCity={activeCity}/>
                 </section>
@@ -66,6 +74,8 @@ MainPage.propTypes = {
   changeFilter: PropTypes.func.isRequired,
   activeFilter: PropTypes.string.isRequired,
   authorizationStatus: PropTypes.string,
+  toggle: PropTypes.bool.isRequired,
+  changeToggleFilter: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({DATA, ACTIVE}) => ({
@@ -73,6 +83,7 @@ const mapStateToProps = ({DATA, ACTIVE}) => ({
   activeFilter: ACTIVE.activeFilter,
   offers: DATA.offers,
   mouseOverId: ACTIVE.mouseOverId,
+  toggle: ACTIVE.toggle,
 });
 
 
@@ -85,6 +96,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   changeOverId(overId) {
     dispatch(ActionCreator.changeOverId(overId));
+  },
+  changeToggleFilter(toggle) {
+    dispatch(ActionCreator.changeToggleFilter(toggle));
   },
 });
 

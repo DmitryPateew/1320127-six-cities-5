@@ -113,7 +113,7 @@ class OfferPage extends PureComponent {
                     className="reviews__amount">{comments.length ? comments.length : `0`}</span>
                   </h2>
                   <ul className="reviews__list">
-                    {sortetComments.map((comment, i) => (
+                    {sortetComments.slice(0, 10).map((comment, i) => (
                       <li key={i} className="reviews__item">
                         <div className="reviews__user user">
                           <div className="reviews__avatar-wrapper user__avatar-wrapper">
