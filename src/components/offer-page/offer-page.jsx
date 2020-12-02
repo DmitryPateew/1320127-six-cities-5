@@ -176,7 +176,7 @@ const mapStateToProps = ({DATA, USER, COMMENT, NEARBY}) => ({
 });
 
 OfferPage.propTypes = {
-  match: PropTypes.any.isRequired,
+  match: PropTypes.any,
   comments: PropTypes.array,
   loadNearOffers: PropTypes.func.isRequired,
   data: PropTypes.array,

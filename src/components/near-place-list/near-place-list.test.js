@@ -1,7 +1,11 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import {NearPlaceList} from "./near-place-list";
 import {expect, it} from "@jest/globals";
+import Enzyme, {shallow} from 'enzyme';
+import {shallowToJson} from 'enzyme-to-json';
+import Adapter from 'enzyme-adapter-react-16';
+
+Enzyme.configure({adapter: new Adapter()});
 
 const nearbyTest = [{
   id: 1,
@@ -38,12 +42,11 @@ An independent House, strategically located between Rembrand Square and National
 }];
 
 it(`Should NearPlaceList render correctly`, () => {
-  const nearTest = renderer.create(<NearPlaceList
+  const nearTest = shallow(<NearPlaceList
     changeOverId={() => {
     }}
     nearby={nearbyTest}
-  />)
-    .toJSON();
+  />);
 
-  expect(nearTest).toMatchSnapshot();
+  expect(shallowToJson(nearTest)).toMatchSnapshot();
 });

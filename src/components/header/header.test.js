@@ -1,16 +1,19 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import {Header} from "./header";
 import {expect, it} from "@jest/globals";
+import Enzyme, {shallow} from 'enzyme';
+import {shallowToJson} from 'enzyme-to-json';
+import Adapter from 'enzyme-adapter-react-16';
+
+Enzyme.configure({adapter: new Adapter()});
 
 const userTest = {email: `valera32@mail.ru`};
 
 it(`Should Header render correctly`, () => {
-  const header = renderer.create(<Header
+  const header = shallow(<Header
     authorizationStatus={`AUTH`}
     user={userTest}
-  />)
-    .toJSON();
+  />);
 
-  expect(header).toMatchSnapshot();
+  expect(shallowToJson(header)).toMatchSnapshot();
 });

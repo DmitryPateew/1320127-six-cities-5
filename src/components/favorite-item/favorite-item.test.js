@@ -20,6 +20,7 @@ An independent House, strategically located between Rembrand Square and National
 it(`Should favoriteItem render correctly`, () => {
   const favoriteItem = renderer.create(<FavoriteItem
     offer={mockOffer}
+    history={[]}
   />)
     .toJSON();
 

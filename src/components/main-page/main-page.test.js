@@ -1,7 +1,11 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import {MainPage} from "./main-page";
 import {expect, it} from "@jest/globals";
+import Enzyme, {shallow} from 'enzyme';
+import {shallowToJson} from 'enzyme-to-json';
+import Adapter from 'enzyme-adapter-react-16';
+
+Enzyme.configure({adapter: new Adapter()});
 
 const offersTest = [{
   id: 1,
@@ -38,7 +42,7 @@ An independent House, strategically located between Rembrand Square and National
 }];
 
 it(`Should MainPage render correctly`, () => {
-  const mainPage = renderer.create(<MainPage
+  const mainPage = shallow(<MainPage
     changeOverId={() => {
     }}
     changeFilter={() => {
@@ -48,8 +52,10 @@ it(`Should MainPage render correctly`, () => {
     offers={offersTest}
     activeFilter={`To Low`}
     activeCity={`NewYork`}
-  />)
-    .toJSON();
+    toggle={false}
+    changeToggleFilter={() => {
+    }}
+  />);
 
-  expect(mainPage).toMatchSnapshot();
+  expect(shallowToJson(mainPage)).toMatchSnapshot();
 });

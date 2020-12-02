@@ -1,7 +1,11 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import FavoriteList from "./favorite-list";
 import {expect, it} from "@jest/globals";
+import Enzyme, {shallow} from 'enzyme';
+import {shallowToJson} from 'enzyme-to-json';
+import Adapter from 'enzyme-adapter-react-16';
+
+Enzyme.configure({adapter: new Adapter()});
 
 const favoriteTest = [{
   id: 1,
@@ -39,10 +43,8 @@ An independent House, strategically located between Rembrand Square and National
 
 
 it(`Should FavoriteList render correctly`, () => {
-  const favoriteList = renderer.create(<FavoriteList
+  const favoriteList = shallow(<FavoriteList
     offers={favoriteTest}
-  />)
-    .toJSON();
-
-  expect(favoriteList).toMatchSnapshot();
+  />);
+  expect(shallowToJson(favoriteList)).toMatchSnapshot();
 });

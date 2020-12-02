@@ -8,6 +8,7 @@ it(`Should SortList render correctly`, () => {
     changeFilter={() => {
     }}
     activeFilter={`NewYork`}
+    toggle={false}
   />)
     .toJSON();
 

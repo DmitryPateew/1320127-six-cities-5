@@ -115,4 +115,5 @@ Map.propTypes = {
   type: PropTypes.string,
 };
 
+export {Map};
 export default connect(mapStateToProps)(Map);

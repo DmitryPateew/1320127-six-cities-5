@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should priveteRoute render correctly 1`] = `
+<Route
+  exact={false}
+  path="/favorites"
+  render={[Function]}
+/>
+`;

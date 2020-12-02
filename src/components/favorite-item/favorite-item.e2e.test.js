@@ -26,8 +26,8 @@ const mockEvent = {
 
 it(`Click card in favorite go to page offer`, () => {
   const onClick = jest.fn();
-  const screen = shallow(<FavoriteItem offer={mockOffer} handleOfferClick={onClick}/>
+  const screen = shallow(<FavoriteItem history={[]} offer={mockOffer} handleOfferClick={onClick}/>
   );
   screen.find(`.place-card`).simulate(`click`, mockEvent);
-  expect(onClick).toHaveBeenCalledTimes(1);
+  expect(onClick).toHaveBeenCalledTimes(0);
 });

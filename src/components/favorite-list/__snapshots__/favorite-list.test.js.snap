@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should FavoriteList render correctly 1`] = `
+<div
+  className="favorites__places"
+>
+  <withRouter(FavoriteItem)
+    key="0"
+    offer={
+      Object {
+        "city": "Hamburg",
+        "coords": Array [
+          52.3909553943508,
+          4.85309666406198,
+        ],
+        "countBedrooms": 3,
+        "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
+An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.",
+        "facilities": Array [
+          "Wi-Fi",
+          "Heating",
+          "Kitchen",
+        ],
+        "favorite": true,
+        "id": 1,
+        "maxAdults": 3,
+        "photos": Array [
+          "img/apartment-02.jpg",
+          "img/apartment-01.jpg",
+        ],
+        "premium": false,
+        "pricePerNight": 150,
+        "rating": 1,
+        "title": "Beautiful & luxurious studio at great location",
+        "typeOfHousing": "room",
+      }
+    }
+  />
+  <withRouter(FavoriteItem)
+    key="1"
+    offer={
+      Object {
+        "city": "Hamburg",
+        "coords": Array [
+          52.3909553943508,
+          4.85309666406198,
+        ],
+        "countBedrooms": 3,
+        "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
+An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.",
+        "facilities": Array [
+          "Wi-Fi",
+          "Heating",
+          "Kitchen",
+        ],
+        "favorite": true,
+        "id": 2,
+        "maxAdults": 3,
+        "photos": Array [
+          "img/apartment-02.jpg",
+          "img/apartment-01.jpg",
+        ],
+        "premium": false,
+        "pricePerNight": 150,
+        "rating": 1,
+        "title": "Beautiful & luxurious studio at great location",
+        "typeOfHousing": "room",
+      }
+    }
+  />
+</div>
+`;

@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should FavoritePage render correctly 1`] = `
+<div
+  className="page"
+>
+  <Connect(Header) />
+  <main
+    className="page__main page__main--favorites"
+  >
+    <div
+      className="page__favorites-container container"
+    >
+      <section
+        className="favorites"
+      >
+        <h1
+          className="favorites__title"
+        >
+          Saved listing
+        </h1>
+        <ul
+          className="favorites__list"
+        >
+          <li
+            className="favorites__locations-items"
+            key="Hamburg"
+          >
+            <div
+              className="favorites__locations locations locations--current"
+            >
+              <div
+                className="locations__item"
+              >
+                <a
+                  className="locations__item-link"
+                  href="#"
+                >
+                  <span>
+                    Hamburg
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div
+              className="favorites__places"
+            >
+              <FavoriteList
+                offers={
+                  Array [
+                    Object {
+                      "city": "Hamburg",
+                      "coords": Array [
+                        52.3909553943508,
+                        4.85309666406198,
+                      ],
+                      "countBedrooms": 3,
+                      "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
+An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.",
+                      "facilities": Array [
+                        "Wi-Fi",
+                        "Heating",
+                        "Kitchen",
+                      ],
+                      "favorite": true,
+                      "id": 1,
+                      "maxAdults": 3,
+                      "photos": Array [
+                        "img/apartment-02.jpg",
+                        "img/apartment-01.jpg",
+                      ],
+                      "premium": false,
+                      "pricePerNight": 150,
+                      "rating": 1,
+                      "title": "Beautiful & luxurious studio at great location",
+                      "typeOfHousing": "room",
+                    },
+                    Object {
+                      "city": "Hamburg",
+                      "coords": Array [
+                        52.3909553943508,
+                        4.85309666406198,
+                      ],
+                      "countBedrooms": 3,
+                      "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
+An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.",
+                      "facilities": Array [
+                        "Wi-Fi",
+                        "Heating",
+                        "Kitchen",
+                      ],
+                      "favorite": true,
+                      "id": 2,
+                      "maxAdults": 3,
+                      "photos": Array [
+                        "img/apartment-02.jpg",
+                        "img/apartment-01.jpg",
+                      ],
+                      "premium": false,
+                      "pricePerNight": 150,
+                      "rating": 1,
+                      "title": "Beautiful & luxurious studio at great location",
+                      "typeOfHousing": "room",
+                    },
+                  ]
+                }
+              />
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </main>
+  <footer
+    className="footer container"
+  >
+    <a
+      className="footer__logo-link"
+      href="main.html"
+    >
+      <img
+        alt="6 cities logo"
+        className="footer__logo"
+        height="33"
+        src="img/logo.svg"
+        width="64"
+      />
+    </a>
+  </footer>
+</div>
+`;

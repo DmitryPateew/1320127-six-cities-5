@@ -73,4 +73,6 @@ const withActiveItem = (Component) => {
   return connect(mapStateToProps, mapDispatchToProps)(withRouter(WithActiveItem));
 };
 
+
+export {withActiveItem};
 export default withActiveItem;

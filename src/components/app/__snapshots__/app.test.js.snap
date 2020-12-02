@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should app render correctly 1`] = `
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <Switch>
+    <Route
+      component={
+        Object {
+          "$$typeof": Symbol(react.memo),
+          "WrappedComponent": [Function],
+          "compare": null,
+          "displayName": "Connect(MainPage)",
+          "type": [Function],
+        }
+      }
+      exact={true}
+      path="/"
+    />
+    <Route
+      exact={true}
+      path="/login"
+    >
+      <Connect(LoginPage) />
+    </Route>
+    <Connect(PrivateRoute)
+      exact={true}
+      path="/favorites"
+      render={[Function]}
+    />
+    <Route
+      exact={true}
+      path="/offer/:id"
+    >
+      <Connect(withRouter(OfferPage)) />
+    </Route>
+  </Switch>
+</Router>
+`;

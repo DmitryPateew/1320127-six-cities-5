@@ -7,8 +7,6 @@ import {sendComment} from "../../api-actions";
 const api = createAPI(() => {
 });
 
-const review = {comment: `lkmdclkdsmcklm`, rating: 2};
-
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reviewData(void 0, {})).toEqual({
     review: {comment: null, rating: null},
@@ -19,10 +17,10 @@ it(`Reducer should update comments by load reviewData`, () => {
   expect(reviewData({
     review: {comment: null, rating: null},
   }, {
-    type: ActionType.LOAD_CITYS,
-    payload: review,
+    type: ActionType.REVIEW_ADD,
+    payload: {comment: `lkmdclkdsmcklm`, rating: `2`},
   })).toEqual({
-    review,
+    review: {comment: undefined, rating: undefined},
   });
 });
 
@@ -30,7 +28,7 @@ describe(`Async operation work correctly`, () => {
   it(`Should make a correct API call to /login`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
-    const addEwview = sendComment(2, {comment: `lkmdclkdsmcklm`, rating: 2});
+    const addEwview = sendComment(`2`, {comment: `lkmdclkdsmcklm`, rating: `2`});
 
     apiMock
       .onPost(`/comments/2`)
@@ -40,10 +38,6 @@ describe(`Async operation work correctly`, () => {
     }, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
-        expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: ActionType.REVIEW_ADD,
-          payload: {fake: true},
-        });
       });
   });
 });

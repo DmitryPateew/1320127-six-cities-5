@@ -9,7 +9,7 @@ const toggle = true;
 
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(filterActive(void 0, {})).toEqual({
-    activeCity: `Amsterdam`,
+    activeCity: `Paris`,
     activeFilter: `Popular`,
     mouseOverId: null,
     toggle: false,
@@ -18,7 +18,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
 
 it(`Reducer should update activeCity`, () => {
   expect(filterActive({
-    activeCity: `Amsterdam`,
+    activeCity: `Paris`,
   }, {
     type: ActionType.CHANGE_CITY,
     payload: activeCity,

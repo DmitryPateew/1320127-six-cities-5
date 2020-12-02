@@ -1,7 +1,11 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import {OfferPage} from "./offer-page";
 import {expect, it} from "@jest/globals";
+import Enzyme, {shallow} from 'enzyme';
+import {shallowToJson} from 'enzyme-to-json';
+import Adapter from 'enzyme-adapter-react-16';
+
+Enzyme.configure({adapter: new Adapter()});
 
 const offersTest = [{
   id: 1,
@@ -34,7 +38,13 @@ An independent House, strategically located between Rembrand Square and National
   countBedrooms: 3,
   maxAdults: 3,
   pricePerNight: 150,
-  facilities: [`Wi-Fi`, `Heating`, `Kitchen`]
+  facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
+  ownerInformation: {
+    photo: `img/apartment-02.jpg`,
+    name: `Vasja`,
+    super: true,
+    id: 2,
+  },
 }];
 
 const testComments = [
@@ -80,14 +90,17 @@ const testComments = [
   }
 ];
 
+const matchTest = {params: {id: `2`}};
+
 it(`Should OfferPage render correctly`, () => {
-  const offerPage = renderer.create(<OfferPage
+  const offerPage = shallow(<OfferPage
     loadComments={()=>{}}
     comments={testComments}
     offers={offersTest}
     authorizationStatus={`AUTH`}
-  />)
-    .toJSON();
+    loadNearOffers={()=>{}}
+    match={matchTest}
+  />);
 
-  expect(offerPage).toMatchSnapshot();
+  expect(shallowToJson(offerPage)).toMatchSnapshot();
 });

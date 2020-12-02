@@ -1,11 +1,15 @@
 import {expect, it} from "@jest/globals";
-import renderer from "react-test-renderer";
 import React from "react";
-import Map from "./map";
+import {Map} from "./map";
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import renderer from "react-test-renderer";
+
+Enzyme.configure({adapter: new Adapter()});
 
 const offersTest = [{
   id: 1,
-  city: `Hamburg`,
+  city: `NewYork`,
   coords: [52.3909553943508, 4.85309666406198],
   favorite: true,
   photos: [`img/apartment-02.jpg`, `img/apartment-01.jpg`],
@@ -19,6 +23,10 @@ An independent House, strategically located between Rembrand Square and National
   maxAdults: 3,
   pricePerNight: 150,
   facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
+  cityLocation: {
+    latitude: 52.3909553943508,
+    longitude: 4.85309666406198,
+  },
 }, {
   id: 2,
   city: `Hamburg`,
@@ -34,7 +42,11 @@ An independent House, strategically located between Rembrand Square and National
   countBedrooms: 3,
   maxAdults: 3,
   pricePerNight: 150,
-  facilities: [`Wi-Fi`, `Heating`, `Kitchen`]
+  facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
+  cityLocation: {
+    latitude: 52.3909553943508,
+    longitude: 4.85309666406198,
+  },
 }];
 
 const nearbyTest = [{
@@ -53,6 +65,10 @@ An independent House, strategically located between Rembrand Square and National
   maxAdults: 3,
   pricePerNight: 150,
   facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
+  cityLocation: {
+    latitude: 52.3909553943508,
+    longitude: 4.85309666406198,
+  },
 }, {
   id: 2,
   city: `Hamburg`,
@@ -68,7 +84,11 @@ An independent House, strategically located between Rembrand Square and National
   countBedrooms: 3,
   maxAdults: 3,
   pricePerNight: 150,
-  facilities: [`Wi-Fi`, `Heating`, `Kitchen`]
+  facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
+  cityLocation: {
+    latitude: 52.3909553943508,
+    longitude: 4.85309666406198,
+  },
 }];
 
 it(`Should Map render correctly`, () => {
@@ -78,8 +98,6 @@ it(`Should Map render correctly`, () => {
     nearby={nearbyTest}
     type={`MAIN`}
     mouseOverId={3}
-  />)
-    .toJSON();
-
+  />, {createNodeMock: () => document.createElement(`div`)}).toJSON();
   expect(map).toMatchSnapshot();
 });

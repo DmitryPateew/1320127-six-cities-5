@@ -74,7 +74,7 @@ MainPage.propTypes = {
   changeFilter: PropTypes.func.isRequired,
   activeFilter: PropTypes.string.isRequired,
   authorizationStatus: PropTypes.string,
-  toggle: PropTypes.bool.isRequired,
+  toggle: PropTypes.bool,
   changeToggleFilter: PropTypes.func.isRequired,
 };
 

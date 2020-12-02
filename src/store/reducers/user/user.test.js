@@ -22,13 +22,18 @@ it(`Reducer without additional parameters should return initial state`, () => {
 
 it(`Reducer should update comments by load offers`, () => {
   expect(user({
-    authorizationStatus: AuthorizationStatus.NO_AUTH,
     user: null,
   }, {
-    type: ActionType.LOAD_CITYS,
-    payload: userTest,
+    type: ActionType.SAVE_USER,
+    payload: {
+      login: `vasja21@mail.ru`,
+      pass: `1234`
+    },
   })).toEqual({
-    userTest,
+    user: {
+      login: `vasja21@mail.ru`,
+      pass: `1234`
+    },
   });
 });
 
@@ -45,7 +50,7 @@ describe(`Async operation work correctly`, () => {
     return userLoader(dispatch, () => {
     }, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenCalledTimes(3);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.SAVE_USER,
           payload: [{fake: true}],

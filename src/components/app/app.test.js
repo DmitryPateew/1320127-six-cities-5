@@ -1,12 +1,14 @@
 import {expect, it} from "@jest/globals";
-import renderer from "react-test-renderer";
+import Enzyme, {shallow} from 'enzyme';
+import {shallowToJson} from 'enzyme-to-json';
+import Adapter from 'enzyme-adapter-react-16';
+
+Enzyme.configure({adapter: new Adapter()});
 
 import React from "react";
 import App from "./app";
 
 it(`Should app render correctly`, () => {
-  const app = renderer.create(<App/>)
-    .toJSON();
-
-  expect(app).toMatchSnapshot();
+  const app = shallow(<App/>);
+  expect(shallowToJson(app)).toMatchSnapshot();
 });
