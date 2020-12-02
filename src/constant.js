@@ -1,4 +1,4 @@
-export const TYPE_OF_HOUSING = {
+export const TypeOfHosing = {
   APARTMENT: `apartment`,
   ROOM: `room`,
   HOUSE: `house`,
@@ -14,7 +14,7 @@ export const CITY_LIST = [
   `Dusseldorf`,
 ];
 
-export const FILTER = [
+export const FILTERS = [
   `Popular`,
   `Price: low to high`,
   `Price: high to low`,
@@ -33,11 +33,11 @@ export const PagePath = {
   OFFER: `/offer/`
 };
 
-export const TYPE__OF__COMPONENT = {
+export const TypeOfComponent = {
   OFFER: `OFFER`,
   MAIN: `MAIN`,
 };
 
-export const TIME__FORMAT = {
+export const TimeFormat = {
   COMMENT: `MMMM YYYY`
 };

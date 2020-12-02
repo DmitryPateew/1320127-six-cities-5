@@ -1,11 +1,11 @@
 import React from "react";
 import {Switch, Route, Router as BrowserRouter} from "react-router-dom";
-import MainPage from "../mainPage/mainPage";
-import LoginPage from "../loginPage/loginPage";
-import OfferPage from "../offerPge/offerPage";
-import FavoritePage from "../favoritePage/favoritePage";
-import PrivateRoute from "../privateRoute/privateRoute";
-import browserHistory from "../../browserHistory";
+import MainPage from "../main-page/main-page";
+import LoginPage from "../login-page/login-page";
+import OfferPage from "../offer-page/offer-page";
+import FavoritePage from "../favorite-page/favorite-page";
+import PrivateRoute from "../private-route/private-route";
+import browserHistory from "../../browser-history";
 
 const App = () => {
   return (

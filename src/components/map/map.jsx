@@ -2,9 +2,9 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import {filterByActiveCity} from "../../mainLogic";
+import {filterByActiveCity} from "../../main-logic";
 import {connect} from "react-redux";
-import {TYPE__OF__COMPONENT} from "../../constant";
+import {TypeOfComponent} from "../../constant";
 
 class Map extends PureComponent {
   constructor(props) {
@@ -18,7 +18,7 @@ class Map extends PureComponent {
   }
 
   _changeTypeOfStore(type) {
-    if (type === TYPE__OF__COMPONENT.OFFER) {
+    if (type === TypeOfComponent.OFFER) {
       this.offers = this.props.nearby;
     } else {
       this.offers = this.props.offers;

@@ -1,30 +1,30 @@
 export const ActionType = {
-  CHANGE__CITY: `CHANGE__CITY`,
-  CHANGE__FILTER: `CHANGE__FILTER`,
-  CHANGE__OVER__ID: `CHANGE__OVER__ID`,
+  CHANGE_CITY: `CHANGE_CITY`,
+  CHANGE_FILTER: `CHANGE_FILTER`,
+  CHANGE_OVER_ID: `CHANGE_OVER_ID`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   LOAD_CITYS: `LOAD_CITYS`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
   SAVE_USER: `SAVE_USER`,
-  LOAD__COMMENTS: `LOAD__COMMENTS`,
-  LOAD__NEARBY: `LOAD__NEARBY`,
-  LOAD__FAVORITES: `LOAD__FAVORITES`,
-  CHANGE__FAVORITE: `CHANGE__FAVORITE`,
-  REVIEW__ADD: `REVIEW__ADD`,
-  CHANGE__TOGGLE__FILTER: `CHANGE__TOGGLE__FILTER`,
+  LOAD_COMMENTS: `LOAD_COMMENTS`,
+  LOAD_NEARBY: `LOAD_NEARBY`,
+  LOAD_FAVORITES: `LOAD_FAVORITES`,
+  CHANGE_FAVORITE: `CHANGE_FAVORITE`,
+  REVIEW_ADD: `REVIEW_ADD`,
+  CHANGE_TOGGLE_FILTER: `CHANGE_TOGGLE_FILTER`,
 };
 
 export const ActionCreator = {
   changeCity: (activeCity) => ({
-    type: ActionType.CHANGE__CITY,
+    type: ActionType.CHANGE_CITY,
     payload: activeCity,
   }),
   changeFilter: (activeFilter) => ({
-    type: ActionType.CHANGE__FILTER,
+    type: ActionType.CHANGE_FILTER,
     payload: activeFilter,
   }),
   changeOverId: (overId) => ({
-    type: ActionType.CHANGE__OVER__ID,
+    type: ActionType.CHANGE_OVER_ID,
     payload: overId,
   }),
   requireAuthorization: (status, login) => ({
@@ -33,7 +33,7 @@ export const ActionCreator = {
     payload2: login,
   }),
   changeToggleFilter: (toggle) => ({
-    type: ActionType.CHANGE__TOGGLE__FILTER,
+    type: ActionType.CHANGE_TOGGLE_FILTER,
     payload: toggle,
   }),
 };
@@ -54,27 +54,27 @@ export const saveUser = (user) => ({
 });
 
 export const loadComments = (comments) => ({
-  type: ActionType.LOAD__COMMENTS,
+  type: ActionType.LOAD_COMMENTS,
   payload: comments,
 });
 
 export const loadNearby = (offers) => ({
-  type: ActionType.LOAD__NEARBY,
+  type: ActionType.LOAD_NEARBY,
   payload: offers,
 });
 
 export const loadFavorite = (favorites) => ({
-  type: ActionType.LOAD__FAVORITES,
+  type: ActionType.LOAD_FAVORITES,
   payload: favorites,
 });
 
 export const changeFavorite = (offer) => ({
-  type: ActionType.CHANGE__FAVORITE,
+  type: ActionType.CHANGE_FAVORITE,
   payload: offer,
 });
 
 export const reviewAdd = (comment, rating) => ({
-  type: ActionType.REVIEW__ADD,
+  type: ActionType.REVIEW_ADD,
   comment0: comment,
   rating0: rating,
 });

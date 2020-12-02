@@ -15,21 +15,21 @@ import {
 describe(`Action creators work correctly`, () => {
   it(`Action creator for changeCity`, () => {
     expect(ActionCreator.changeCity(`NeyYork`)).toEqual({
-      type: ActionType.CHANGE__CITY,
+      type: ActionType.CHANGE_CITY,
       payload: `NeyYork`,
     });
   });
 
   it(`Action creator for CHANGE__FILTER`, () => {
     expect(ActionCreator.changeFilter(`To low`)).toEqual({
-      type: ActionType.CHANGE__FILTER,
+      type: ActionType.CHANGE_FILTER,
       payload: `To low`,
     });
   });
 
   it(`Action creator for changeOverId`, () => {
     expect(ActionCreator.changeOverId(null)).toEqual({
-      type: ActionType.CHANGE__OVER__ID,
+      type: ActionType.CHANGE_OVER_ID,
       payload: null,
     });
   });
@@ -560,7 +560,7 @@ An independent House, strategically located between Rembrand Square and National
           isPro: false, name: `Max`
         }}]
     )).toEqual({
-      type: ActionType.LOAD__COMMENTS,
+      type: ActionType.LOAD_COMMENTS,
       payload: [
         {
           comment: `A quiet cozy and dlfkmvlksfdmof Amsterdam.`,
@@ -824,7 +824,7 @@ An independent House, strategically located between Rembrand Square and National
         ]
       }
     ])).toEqual({
-      type: ActionType.LOAD__NEARBY,
+      type: ActionType.LOAD_NEARBY,
       payload: [
         {
           id: 1,
@@ -1283,7 +1283,7 @@ An independent House, strategically located between Rembrand Square and National
         ]
       }
     ])).toEqual({
-      type: ActionType.LOAD__FAVORITES,
+      type: ActionType.LOAD_FAVORITES,
       payload: [
         {
           id: 1,
@@ -1560,7 +1560,7 @@ An independent House, strategically located between Rembrand Square and National
         }
       ]
     })).toEqual({
-      type: ActionType.CHANGE__FAVORITE,
+      type: ActionType.CHANGE_FAVORITE,
       payload: {
         id: 1,
         city: `Hamburg`,
@@ -1611,7 +1611,7 @@ An independent House, strategically located between Rembrand Square and National
 
   it(`Action creator for reviewAdd`, () => {
     expect(reviewAdd(`good`, 3)).toEqual({
-      type: ActionType.REVIEW__ADD,
+      type: ActionType.REVIEW_ADD,
       comment0: `good`,
       rating0: 3,
     });
